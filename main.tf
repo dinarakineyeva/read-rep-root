@@ -31,3 +31,14 @@ module "cloudsql_mssql_replicas_test" {
   read_replicas            = var.read_replica
   read_replica_name_suffix = var.read_replica_name_suffix
 }
+module "cloudsql_postgres_rr_test" {
+  source                   = "../../child/readreplica"
+  project_id               = var.project_id
+  region                   = var.region
+  zone                     = var.zones[0]
+  database_version         = var.database_version
+  master_instance_name     = module.cloudsql_postgres_sync_test.instance_name
+  tier                     = var.tier
+  read_replicas            = var.read_replicas
+  read_replica_name_suffix = var.read_replica_name_suffix
+}
